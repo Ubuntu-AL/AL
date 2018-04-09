@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <!-- head -->
+  <div id="head" style="height: 51px; background: red;">
+  	<nav class="navbar navbar-default navbar-fixed-top">
+    	<div class="container">
+      	<div class="navbar-header" >
+      		<a href="#" class="navbar-brand">Logo</a>
+      	</div>
+    	</div>
+  	</nav>
+  </div>
+  <!-- body -->
+  <div id="body" style="height: 840px; background: gainsboro;">
+  	<table id="userInfo" class="table table-hover" style="background: lightskyblue;">
+  		<caption>渲染表格数据</caption>
+  		<thead>
+    		<tr>
+      		<th>ID</th>
+      		<th>姓名</th>
+      		<th>邮箱</th>
+      		<th>操作</th>
+    		</tr>
+  		</thead>
+  		<tbody id ="J_TbData">
+    		<tr>
+      		<td>Offline</td>
+      		<td>Offline</td>
+      		<td>Offline</td>
+      		<td>Offline</td>
+    		</tr>
+  		</tbody>
+		</table>
+  </div>
+  <!-- foot -->
+  <div id="foot" style="height: 50px;background: brown;">
+  	<footer class="footer">
+    	<div class="container">
+      	<p class="text-muted">Designed by Lin.</p>
+    	</div>
+  	</footer>
+  </div>
+</body>
+
+<!--Ajax请求服务器数据，并渲染表格-->
+<script type="text/javascript" src="../myjs/userInfoTable.js"></script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <table class="table table-striped">
+  <caption>渲染表格数据</caption>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>姓名</th>
+      <th>邮箱</th>
+    </tr>
+  </thead>
+  <tbody id ="J_TbData">
+    <tr>
+      <td>001</td>
+      <td>Bangalore</td>
+      <td>@</td>
+    </tr>
+    <tr>
+      <td>002</td>
+      <td>Mumbai</td>
+      <td>@</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+
+<script>
+  var settings = {
+	"async": true,
+	"crossDomain": true,
+    "url": "http://localhost:8080/relationship/getGroupUsers?groupId=7e9e76b9-b4de-48cb-b000-c6330daf2345",
+	"method": "GET"
+  }
+
+  $.ajax(settings).done(function (response) {
+	console.log(response);
+	//清空子节点，即清空表格行
+	$("#J_TbData").empty();
+	//jQuery循环遍历json数据
+	$.each (response, function(index){
+        //动态创建一个tr行标签,并且转换成jQuery对象
+        var $trTemp = $("<tr></tr>");
+        
+        //往行里面追加 td单元格
+        $trTemp.append("<td>"+ response[index].id +"</td>");
+        $trTemp.append("<td>"+ response[index].firstName+response[index].lastName +"</td>");
+        $trTemp.append("<td>"+ response[index].email +"</td>");
+        
+        // $("#J_TbData").append($trTemp);
+        $trTemp.appendTo("#J_TbData");
+    });	
+  });
+</script>
+
+</html>
