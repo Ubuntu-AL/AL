@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class RequestVars{
 	
-	private StartSwitch startSwitch;
+	private List<StartSwitch> startSwitch;
 
 	private List<Vars> vars;
 	
@@ -27,24 +27,23 @@ public class RequestVars{
 	 * @param startSwitch
 	 * @param vars
 	 */
-	public RequestVars(StartSwitch startSwitch, List<Vars> vars) {
+	public RequestVars(List<StartSwitch> startSwitch, List<Vars> vars) {
 		super();
 		this.startSwitch = startSwitch;
 		this.vars = vars;
 	}
 
-
 	/**
 	 * @return the startSwitch
 	 */
-	public StartSwitch getStartSwitch() {
+	public List<StartSwitch> getStartSwitch() {
 		return startSwitch;
 	}
 
 	/**
 	 * @param startSwitch the startSwitch to set
 	 */
-	public void setStartSwitch(StartSwitch startSwitch) {
+	public void setStartSwitch(List<StartSwitch> startSwitch) {
 		this.startSwitch = startSwitch;
 	}
 

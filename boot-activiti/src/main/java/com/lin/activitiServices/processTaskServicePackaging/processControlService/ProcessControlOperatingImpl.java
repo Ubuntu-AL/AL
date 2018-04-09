@@ -24,7 +24,7 @@ public class ProcessControlOperatingImpl implements ProcessControlOperatingInte{
 	 * @param vars 流程启动需要初始化的参数集 
 	 * tips:
 	 * 		1. startSwitch:{
-	 * 			"byKey":"processInstanceId" / "byMessage":"messages"
+	 * 			"byId":"processDefinitionId" / "byMessage":"messages"
 	 * 		}
 	 * 
 	 * 		2. vars:{
@@ -36,7 +36,7 @@ public class ProcessControlOperatingImpl implements ProcessControlOperatingInte{
 			Map<String, Object> vars) {
 		// TODO Auto-generated method stub
 		for(String key : startSwitch.keySet()) {
-			if(key.equals("byKey")) {
+			if(key.equals("byId")) {
 				if(vars.containsKey("default")) {
 					runtimeService.startProcessInstanceById(startSwitch.get(key));
 				}else {
