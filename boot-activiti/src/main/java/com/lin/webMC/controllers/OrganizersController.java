@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lin.activitiServices.UserGroupServicePackaging.GroupService.GroupOperatingInte;
 import com.lin.activitiServices.UserGroupServicePackaging.UserInfoService.UserInfoOperatingInte;
 import com.lin.activitiServices.UserGroupServicePackaging.UserService.UserOperatingInte;
+import com.lin.webMC.jsonBeans.ResponseGroup;
 import com.lin.webMC.jsonBeans.ResponseUser;
 import com.lin.webMC.pojo.ResponseBodyPackaging;
 
@@ -132,7 +133,6 @@ public class OrganizersController {
 		Map<String, ResponseUser> responseUsers = new HashMap<String ,ResponseUser>();
 		List<User> users = new ArrayList<User>();
 		Map<String, String> information = new HashMap<String, String>();
-		int i = 1;
 		
 		information.put("sex", sex);
 		information.put("phone", phone);
@@ -156,9 +156,7 @@ public class OrganizersController {
 			ResponseUser responseUser = new ResponseUser();
 			responseUser.setUser(usr);
 			responseUser.setUserInfo(userInfoOperating.getDefaultInfos(identityService, usr.getId()));
-			responseUsers.put("usermsg"+i, responseUser);
 			
-			i ++;
 		}
 		
 		return responseUsers;
@@ -202,9 +200,8 @@ public class OrganizersController {
 	@ResponseBody
 	public Map<String, ResponseUser> deletUsers(@RequestParam("userIds") List<String> userids){
 		
-		Map<String, ResponseUser> responseUsers = new HashMap<String ,ResponseUser>();
+		Map<String, ResponseUser> responseUsers = new HashMap<String, ResponseUser>();
 		List<User> users = new ArrayList<User>();
-		int i = 1;
 		
 		userOperating.batchDropUser(identityService, userids);
 		users = userOperating.allUser(identityService);
@@ -212,9 +209,6 @@ public class OrganizersController {
 			ResponseUser responseUser = new ResponseUser();
 			responseUser.setUser(usr);
 			responseUser.setUserInfo(userInfoOperating.getDefaultInfos(identityService, usr.getId()));
-			responseUsers.put("usermsg"+i, responseUser);
-			
-			i ++;
 		}
 		
 		return responseUsers;
@@ -231,15 +225,22 @@ public class OrganizersController {
 	 */
 	@GetMapping("/organization/groupList")
 	@ResponseBody
-	public Map<String, Group> allGroups(){
-		
+	public List<Map<String, ResponseGroup>> allGroups(){
+		List<Map<String, ResponseGroup>> responseGroups = new ArrayList<Map<String, ResponseGroup>>();
 		List<Group> groups = new ArrayList<Group>();
-		Map<String, Group> response = new HashMap<String, Group>();
 		
 		groups = groupOperating.allGroups(identityService);
-		response = responseBodyPackaging.groupListPackaging(groups);
+		for(Group group: groups) {
+			ResponseGroup responseGroup = new ResponseGroup();
+			responseGroup.setGroup(group);
+			responseGroup.setName(group.getName());
+			Map<String, ResponseGroup> groupMap = new HashMap<String, ResponseGroup>();
+			groupMap.put("groupmsg", responseGroup);
+			responseGroups.add(groupMap);
 		
-		return response;
+		}
+		
+		return responseGroups;
 	}
 	
 	/**

@@ -72,7 +72,7 @@ public class PocessExecutionController {
 	
 
 	/**
-	 * <p>Title: getMyProcesses</p>  
+	 * <p>Title: getAllProcesses</p>  
 	 * <p>Description: 此服务用于获取所有的流程定义资源，可供启动</p> 
 	 * @return responseData 返回查询得到的所有已部署的资源
 	 */

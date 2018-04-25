@@ -132,6 +132,9 @@ public class RelationshipController {
 		List<User> users = new ArrayList<User>();
 		Map<String, User> response = new HashMap<String ,User>();
 		
+		System.out.println(requestJson.getGroupId());
+		System.out.println(requestJson.getUserIds().toString());
+		
 		for(String userId : requestJson.getUserIds()) {
 			groupOperating.createMemberShip(identityService, userId, requestJson.getGroupId());
 		}
